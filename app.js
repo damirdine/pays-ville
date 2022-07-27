@@ -1,27 +1,27 @@
 fetch('cities.json')
 .then(res => res.json())
-.then(json => console.log(getPays(json)))
+.then(json => app(json))
 
 
 function app(data){
-    let listPays = getPays(data);
-    let selectPays = document.querySelector('#country')
-    
+    let listCountry = getPays(data)
+    let selectCountry = document.querySelector('#country')
+    displayList(listCountry,selectCountry)
 }
 
 function getPays(data){
-    let listPays = []
+    let listCountry = []
     data.forEach(ville => {
         let pay = ville.countrycode.name
-        if(!listPays.includes(pay)){
-            listPays.push(pay)
+        if(!listCountry.includes(pay)){
+            listCountry.push(pay)
         }
     });
-    return listPays
+    return listCountry
 }
 
-function displayList(list,dom){
-    list.forEach(
-
-    )
+function displayList(list,select){
+    list.forEach(country => {
+        select.innerHTML += `<option value="${country}">${country}</option>`
+    });
 }
