@@ -7,7 +7,7 @@ let tableContent = document.querySelector('#cityData')
 
 function app(data){
     let listCountry = getCountry(data)
-    displayList(listCountry,selectCountry)
+    displaySelectListOptions(listCountry,selectCountry)
     selectCountry.addEventListener("change", ()=>displayCity(searchByCountry(this.event.target.value,data)))
 }
 function getCountry(data){
@@ -18,8 +18,7 @@ function getCountry(data){
             listCountry.push(country)
         }
     })
-    listCountry.sort()
-    return listCountry
+    return listCountry.sort()
 }
 function searchByCountry(country,data){
     let listCity = []
@@ -29,10 +28,10 @@ function searchByCountry(country,data){
             listCity.push(city)
         }
     })
-    return listCity
+    return listCity.sort((a, b) => parseFloat(a.name) - parseFloat(b.name))
 }
 
-function displayList(list){
+function displaySelectListOptions(list){
     list.forEach(country => {
         selectCountry.innerHTML += `<option value="${country}">${country}</option>`
     })
